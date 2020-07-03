@@ -1,0 +1,52 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+
+nav ul li:hover {
+  background-color:rgb(56, 56, 56);
+}
+
+
+.img1{
+border: 10px groove rgb(54, 54, 52);
+height: 300px;
+width: 300px;
+margin-left: 20px;
+
+}
+
+.name1{
+  font-weight: 800;
+}
+
+.social-icon{
+  background-color: rgb(231, 231, 80);
+  
+}
+.v1{
+  border-left: 1px solid darkgray;
+  padding-left: 5px;
+}
+.sub-ed{
+  padding-left: 8px;
+}
+#txt1{
+  font-size:13px;
+  line-height:24px;
+  padding-left: 10px;
+ }
+.material-icons{
+  display: inline-flex;
+  vertical-align: top;
+}
+.row1{
+  padding-top:100px;
+}
+.sl{
+  margin-top:3px;
+}
