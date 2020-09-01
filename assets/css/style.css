@@ -11,13 +11,18 @@ nav ul li:hover {
   background-color:rgb(56, 56, 56);
 }
 
+.img-profile{
+  border: 10px groove rgb(54, 54, 52);
 
-.img1{
-border: 10px groove rgb(54, 54, 52);
-height: 300px;
-width: 300px;
-margin-left: 20px;
+}
 
+.dropdown-content li > a, .dropdown-content li > span {
+  font-size: 16px;
+  color: #d3ecea;
+  display: block;
+  line-height: 22px;
+  padding: 14px 16px;
+  background: #533631 !important;
 }
 
 .name1{
@@ -28,9 +33,16 @@ margin-left: 20px;
   background-color: rgb(231, 231, 80);
   
 }
+
 .v1{
   border-left: 1px solid darkgray;
   padding-left: 5px;
+}
+.lpad{
+  padding-left: 5px;
+}
+.lpad10{
+  padding-left: 10px;
 }
 .sub-ed{
   padding-left: 8px;
@@ -49,4 +61,7 @@ margin-left: 20px;
 }
 .sl{
   margin-top:3px;
+}
+.pdfViewer{
+  background-image: url(../img/web_design.png);
 }

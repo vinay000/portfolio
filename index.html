@@ -47,7 +47,7 @@
         <nav class="black" role="navigation">
             <div class="nav-wrapper container">
                 <a id="logo-container" href="#" class="brand-logo center">
-                    <img src="logo111.png" height="5" alt="">
+                    <img src="./assets/img/logo111.png" height="5" alt="">
                 </a>
         </nav>
         <ul>
@@ -58,7 +58,7 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
         </div>
-    </div>
+
 
     <!-- header-end -->
 
@@ -67,7 +67,7 @@
             <br><br>
             <div class="row">
                 <div class="col l5">
-                    <img src="assets/img/vinay1.jpeg" alt="" class="circle img1">
+                    <img src="assets/img/vinay1.jpeg" alt="" class="circle responsive-img img-profile">
                     <!-- notice the "circle" class -->
 
                 </div>
@@ -83,8 +83,13 @@
                     </div>
                     <div class="row">
                         <div class="col l3">
-                            <a href="resume.html" id="download-button" class="btn waves-effect waves-light brown darken-4">Download
-                CV</a>
+                            <!-- <a href="resume.html" id="download-button" class="btn waves-effect waves-light brown darken-4">Resume</a> -->
+                            <a class='dropdown-trigger btn waves-effect waves-light brown darken-4' href='resume.html' data-target='dropdown1'>Resume</a>
+                            <ul id='dropdown1' class='dropdown-content'>
+                                <li><a href="resume1.html">Resume1</a></li>
+                                <li><a href="resume2.html">Resume2</a></li>
+                            </ul>
+
                         </div>
                         <div class="col l3 offset-l2">
                             <a href="#contact" id="download-button" class="btn waves-effect waves-light brown darken-4">Contact me</a>
@@ -348,9 +353,8 @@
   skill start**************** -->
                 <div class="col s6 l4 white-text">
                     <h6>SKILL</h6>
-                    <div class=" row v1">
-
-                        <div class="col l6 s6">
+                    <div class="row lpad">
+                        <div class="col l6 s12 v1">
                             Python
                             <div class="progress">
                                 <div class="determinate orange" style="width: 100%"></div>
@@ -378,7 +382,7 @@
 
                         </div>
 
-                        <div class="col l6 s6 ">
+                        <div class="col l6 s12 v1">
 
                             HTML5
                             <div class="progress">
@@ -386,7 +390,7 @@
                             </div>
 
 
-                            Angular 7 8 9
+                            Angular 7/8/9/10
                             <div class="progress">
                                 <div class="determinate blue" style="width: 80%"></div>
                             </div>
@@ -417,7 +421,6 @@
                     <div class="row">
                         <h6>DESIGN SKILL</h6>
                         <div class="v1">
-
                             <div>
                                 <p class="col s10">Materialize CSS</p>
                                 <p class="col s2 right-align">5/5</p>
@@ -533,7 +536,7 @@
 
         <div class="footer-copyright">
             <div class="container">
-                Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Vinay</a>
+             <a class="orange-text text-lighten-3" href="https://github.com/vinay000"> &emsp; <p class="center"> &copy; 2020 vinaypro.com</p></a>
             </div>
         </div>
     </footer>
