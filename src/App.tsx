@@ -15,7 +15,7 @@ const App: React.FC = () => {
         <div id="portfolio-content" className="w-full min-h-screen">
           <RootRoutes />
         </div>
-        <WordGameOverlay />
+        {/* <WordGameOverlay /> */}
       </Router>
     </ReactLenis>
   );
