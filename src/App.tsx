@@ -9,7 +9,7 @@ import { WordGameOverlay } from './components/WordGameOverlay';
 const App: React.FC = () => {
   return (
     <ReactLenis root>
-      <Router basename={import.meta.env.BASE_URL}>
+      <Router basename={import.meta.env.BASE_URL.replace(/\/$/, "")}>
         <CustomCursor />
         <TeslaGridCanvas />
         <div id="portfolio-content" className="w-full min-h-screen">
