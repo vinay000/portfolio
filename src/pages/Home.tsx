@@ -3,7 +3,6 @@ import { HeroSection } from '@/components/portfolio/HeroSection';
 import { VenturesSection } from '@/components/portfolio/VenturesSection';
 import { TimelineSection } from '@/components/portfolio/TimelineSection';
 import { SkillsSection } from '@/components/portfolio/SkillsSection';
-import { SandboxSection } from '@/components/portfolio/SandboxSection';
 import { ContactSection } from '@/components/portfolio/ContactSection';
 
 const Home: React.FC = () => {
@@ -15,7 +14,8 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className="relative space-y-12 pb-24">
+    <div className="relative max-w-5xl mx-auto px-5 sm:px-8 md:px-12 pt-8 pb-24">
+      
       {/* Hero Section */}
       <HeroSection onScrollToSection={handleScrollToSection} />
 
@@ -28,11 +28,9 @@ const Home: React.FC = () => {
       {/* Capabilities */}
       <SkillsSection />
 
-      {/* Interactive Command Sandbox */}
-      <SandboxSection />
-
       {/* Direct Communication Node */}
       <ContactSection />
+
     </div>
   );
 };

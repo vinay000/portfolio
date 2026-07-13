@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Search, Folder, Terminal, Calendar, Code, Mail, Github, Twitter, Linkedin, ArrowRight, CornerDownLeft } from 'lucide-react';
+import { Search, Folder, Home, Calendar, Code, Mail, Github, Linkedin, CornerDownLeft } from 'lucide-react';
 
 interface CommandMenuProps {
   isOpen: boolean;
@@ -14,15 +14,13 @@ export const CommandMenu: React.FC<CommandMenuProps> = ({ isOpen, onClose, onSel
   const inputRef = useRef<HTMLInputElement>(null);
 
   const commands = [
-    { id: 'hero', title: 'Scroll to Hero', category: 'Navigation', icon: <Terminal className="w-4 h-4" />, action: 'scroll-hero' },
-    { id: 'ventures', title: 'View Ventures & Projects', category: 'Navigation', icon: <Folder className="w-4 h-4" />, action: 'scroll-ventures' },
+    { id: 'hero', title: 'Scroll to Hero', category: 'Navigation', icon: <Home className="w-4 h-4" />, action: 'scroll-hero' },
+    { id: 'ventures', title: 'View Selected Creations', category: 'Navigation', icon: <Folder className="w-4 h-4" />, action: 'scroll-ventures' },
     { id: 'experience', title: 'View Career Timeline', category: 'Navigation', icon: <Calendar className="w-4 h-4" />, action: 'scroll-experience' },
     { id: 'skills', title: 'View Tech Stack & Skills', category: 'Navigation', icon: <Code className="w-4 h-4" />, action: 'scroll-skills' },
-    { id: 'sandbox', title: 'Open Sandbox (Interactive Terminal)', category: 'Interactive', icon: <Terminal className="w-4 h-4" />, action: 'scroll-sandbox' },
-    { id: 'contact', title: 'Let’s Build (Contact Form)', category: 'Navigation', icon: <Mail className="w-4 h-4" />, action: 'scroll-contact' },
+    { id: 'contact', title: 'Let’s Build Together', category: 'Navigation', icon: <Mail className="w-4 h-4" />, action: 'scroll-contact' },
     { id: 'github', title: 'Follow on GitHub', category: 'Socials', icon: <Github className="w-4 h-4" />, action: 'link-github' },
     { id: 'linkedin', title: 'Connect on LinkedIn', category: 'Socials', icon: <Linkedin className="w-4 h-4" />, action: 'link-linkedin' },
-    { id: 'twitter', title: 'Follow on X / Twitter', category: 'Socials', icon: <Twitter className="w-4 h-4" />, action: 'link-twitter' },
   ];
 
   const filteredCommands = commands.filter((cmd) =>
@@ -83,7 +81,7 @@ export const CommandMenu: React.FC<CommandMenuProps> = ({ isOpen, onClose, onSel
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 bg-black/80 backdrop-blur-md"
+            className="absolute inset-0 bg-black/60 dark:bg-black/80 backdrop-blur-sm"
             onClick={onClose}
           />
 
@@ -93,14 +91,11 @@ export const CommandMenu: React.FC<CommandMenuProps> = ({ isOpen, onClose, onSel
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ type: 'spring', duration: 0.3 }}
-            className="relative w-full max-w-xl bg-neutral-950 border border-neutral-800 rounded-xl shadow-2xl overflow-hidden glass-panel"
+            className="relative w-full max-w-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-2xl overflow-hidden"
           >
-            {/* Glowing top line */}
-            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-purple-500 via-white to-cyan-500 opacity-60" />
-
             {/* Input field */}
-            <div className="flex items-center gap-3 px-4 py-4 border-b border-neutral-800">
-              <Search className="w-5 h-5 text-neutral-400 shrink-0" />
+            <div className="flex items-center gap-3 px-4 py-4 border-b border-slate-100 dark:border-slate-800">
+              <Search className="w-5 h-5 text-slate-400 dark:text-slate-500 shrink-0" />
               <input
                 ref={inputRef}
                 type="text"
@@ -110,17 +105,17 @@ export const CommandMenu: React.FC<CommandMenuProps> = ({ isOpen, onClose, onSel
                   setSelectedIndex(0);
                 }}
                 placeholder="Type a command or search..."
-                className="w-full bg-transparent border-0 outline-none text-slate-100 placeholder-neutral-500 text-sm font-light font-mono"
+                className="w-full bg-transparent border-0 outline-none text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 text-sm font-light font-mono"
               />
-              <span className="text-[10px] bg-neutral-900 border border-neutral-800 text-neutral-400 px-2 py-1 rounded font-mono shrink-0 select-none">
+              <span className="text-[10px] bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 px-2 py-1 rounded font-mono font-bold shrink-0 select-none">
                 ESC
               </span>
             </div>
 
             {/* Content List */}
-            <div className="max-h-[340px] overflow-y-auto p-2 space-y-4">
+            <div className="max-h-[300px] overflow-y-auto p-2 space-y-4">
               {filteredCommands.length === 0 ? (
-                <div className="text-center py-8 text-neutral-500 text-sm font-mono">
+                <div className="text-center py-8 text-slate-550 dark:text-slate-400 text-sm font-mono">
                   No commands found for "{search}"
                 </div>
               ) : (
@@ -128,7 +123,7 @@ export const CommandMenu: React.FC<CommandMenuProps> = ({ isOpen, onClose, onSel
                   {/* Group items by Category */}
                   {Array.from(new Set(filteredCommands.map((c) => c.category))).map((cat) => (
                     <div key={cat} className="space-y-1 mb-3">
-                      <h4 className="text-[10px] font-mono text-neutral-500 px-3 uppercase tracking-wider">
+                      <h4 className="text-[10px] font-mono text-slate-500 dark:text-slate-400 font-semibold px-3 uppercase tracking-wider">
                         {cat}
                       </h4>
                       {filteredCommands
@@ -143,18 +138,18 @@ export const CommandMenu: React.FC<CommandMenuProps> = ({ isOpen, onClose, onSel
                               onMouseEnter={() => setSelectedIndex(globalIndex)}
                               className={`flex items-center justify-between px-3 py-2.5 rounded-lg cursor-pointer transition-colors ${
                                 isSelected
-                                  ? 'bg-neutral-900 text-white border-neutral-700'
-                                  : 'text-neutral-400 hover:text-neutral-200'
+                                  ? 'bg-slate-100 dark:bg-slate-800/80 text-slate-900 dark:text-white border-slate-205 dark:border-slate-800'
+                                  : 'text-slate-600 dark:text-slate-350 hover:text-slate-900 dark:hover:text-white'
                               }`}
                             >
                               <div className="flex items-center gap-3">
-                                <span className={`${isSelected ? 'text-cyan-400' : 'text-neutral-500'}`}>
+                                <span className={`${isSelected ? 'text-[#2B6A65] dark:text-teal-400' : 'text-slate-400 dark:text-slate-500'}`}>
                                   {cmd.icon}
                                 </span>
                                 <span className="text-sm font-light">{cmd.title}</span>
                               </div>
                               {isSelected && (
-                                <span className="flex items-center gap-1 text-[10px] font-mono text-neutral-500">
+                                <span className="flex items-center gap-1 text-[10px] font-mono text-slate-500 dark:text-slate-400">
                                   <span>Select</span>
                                   <CornerDownLeft className="w-3 h-3" />
                                 </span>
@@ -169,16 +164,16 @@ export const CommandMenu: React.FC<CommandMenuProps> = ({ isOpen, onClose, onSel
             </div>
 
             {/* Footer */}
-            <div className="flex justify-between items-center px-4 py-3 bg-neutral-950/90 border-t border-neutral-900 text-[10px] font-mono text-neutral-500 select-none">
+            <div className="flex justify-between items-center px-4 py-3 bg-slate-50 dark:bg-slate-950 border-t border-slate-100 dark:border-slate-800 text-[10px] font-mono text-slate-550 dark:text-slate-400 font-semibold select-none">
               <div className="flex items-center gap-2">
                 <span>Use arrows</span>
-                <span className="border border-neutral-800 bg-neutral-900 px-1 rounded">↑</span>
-                <span className="border border-neutral-800 bg-neutral-900 px-1 rounded">↓</span>
+                <span className="border border-slate-205 dark:border-slate-800 bg-white dark:bg-slate-900 px-1 rounded">↑</span>
+                <span className="border border-slate-205 dark:border-slate-800 bg-white dark:bg-slate-900 px-1 rounded">↓</span>
                 <span>to navigate</span>
               </div>
               <div className="flex items-center gap-1">
                 <span>Press</span>
-                <span className="border border-neutral-800 bg-neutral-900 px-1.5 py-0.5 rounded">⏎</span>
+                <span className="border border-slate-205 dark:border-slate-800 bg-white dark:bg-slate-900 px-1.5 py-0.5 rounded">⏎</span>
                 <span>to execute</span>
               </div>
             </div>

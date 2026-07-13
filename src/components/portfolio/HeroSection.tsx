@@ -1,130 +1,123 @@
-import React, { useRef, useState } from 'react';
-import { motion, useMotionTemplate, useMotionValue } from 'framer-motion';
-import { ArrowDown, Code, Sparkles, Terminal } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowDown, Linkedin, Github, Mail } from 'lucide-react';
+import placeholderUser from '@/assets/img/placeholder-user.jpg';
 
-export const HeroSection: React.FC<{ onScrollToSection: (id: string) => void }> = ({ onScrollToSection }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+interface HeroSectionProps {
+  onScrollToSection: (id: string) => void;
+}
 
-  function handleMouseMove({ clientX, clientY }: React.MouseEvent) {
-    if (!containerRef.current) return;
-    const { left, top } = containerRef.current.getBoundingClientRect();
-    mouseX.set(clientX - left);
-    mouseY.set(clientY - top);
-  }
-
-  const spotlightBackground = useMotionTemplate`radial-gradient(700px circle at ${mouseX}px ${mouseY}px, rgba(168, 85, 247, 0.08) 0%, rgba(6, 182, 212, 0.05) 40%, transparent 80%)`;
-
+export const HeroSection: React.FC<HeroSectionProps> = ({ onScrollToSection }) => {
   return (
     <section
       id="hero"
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-      className="relative min-h-[90vh] flex flex-col justify-center items-center px-6 md:px-12 py-16 md:py-24 text-center overflow-hidden"
+      className="relative flex flex-col justify-center items-start pt-16 pb-12 text-left overflow-hidden border-b border-zinc-200/50 dark:border-zinc-800/40 w-full"
     >
-      {/* Spotlight Effect */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none -z-10"
-        style={{ background: spotlightBackground }}
-      />
+      <div className="max-w-4xl w-full space-y-6 relative z-10">
 
-      {/* Grid Overlay */}
-      <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none -z-20" />
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black pointer-events-none -z-15" />
-
-      {/* Hero Content */}
-      <div className="max-w-4xl mx-auto space-y-8 relative z-10">
-        
-        {/* Animated Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-950/80 border border-neutral-800/80 backdrop-blur-md"
-        >
-          <span className="flex h-2 w-2 relative">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
-          </span>
-          <span className="text-[10px] md:text-xs font-mono font-medium tracking-widest text-neutral-400 uppercase flex items-center gap-1.5">
-            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            Active End-to-End Delivery
-          </span>
-        </motion.div>
-
-        {/* Majestic Typography */}
-        <div className="space-y-4">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-4xl sm:text-6xl md:text-8xl font-extrabold tracking-tight text-white leading-none font-display select-none"
+        {/* Profile photo and Social links */}
+        <div className="flex items-center justify-between w-full gap-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-sm shrink-0"
           >
-            Vinay Kumar Yadav
-          </motion.h1>
-          
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl sm:text-2xl md:text-3xl font-light text-neutral-400 tracking-tight"
+            <img
+              src={`${import.meta.env.BASE_URL}my.png`}
+              alt="Vinay Kumar Yadav"
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.onerror = null; // Prevent infinite error loops
+                target.src = placeholderUser;
+              }}
+            />
+          </motion.div>
+
+          {/* Social Links on the far right end (only icons in circular buttons) */}
+          <motion.div
+            initial={{ opacity: 0, x: 10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="flex items-center gap-3 select-none"
           >
-            Building high-performance <span className="text-gradient-neon font-medium">web & mobile solutions</span>
-          </motion.h2>
+            <a
+              href="https://www.linkedin.com/in/vinay000"
+              target="_blank"
+              rel="noreferrer"
+              title="LinkedIn Profile"
+              className="w-10 h-10 rounded-full flex items-center justify-center border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/45 text-slate-700 dark:text-slate-300 hover:text-[#2B6A65] dark:hover:text-teal-400 hover:border-[#2B6A65]/40 dark:hover:border-teal-500/40 transition-all shadow-sm"
+            >
+              <Linkedin className="w-4.5 h-4.5" />
+            </a>
+            <a
+              href="https://github.com/vinay000"
+              target="_blank"
+              rel="noreferrer"
+              title="GitHub Profile"
+              className="w-10 h-10 rounded-full flex items-center justify-center border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/45 text-slate-700 dark:text-slate-300 hover:text-[#2B6A65] dark:hover:text-teal-400 hover:border-[#2B6A65]/40 dark:hover:border-teal-500/40 transition-all shadow-sm"
+            >
+              <Github className="w-4.5 h-4.5" />
+            </a>
+            <a
+              href="mailto:vinsyadav5@gmail.com"
+              title="Send Mail"
+              className="w-10 h-10 rounded-full flex items-center justify-center border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/45 text-slate-700 dark:text-slate-300 hover:text-[#2B6A65] dark:hover:text-teal-400 hover:border-[#2B6A65]/40 dark:hover:border-teal-500/40 transition-all shadow-sm"
+            >
+              <Mail className="w-4.5 h-4.5" />
+            </a>
+          </motion.div>
         </div>
 
-        {/* Refined Description */}
+        {/* Screenshot-inspired typography */}
+        <div className="space-y-4">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="text-[2.5rem] sm:text-[3.8rem] md:text-[4.5rem] font-bold tracking-tight leading-[1.1] text-[#0A2540] dark:text-white font-display select-none"
+          >
+            Engineering AI-powered <br />
+            apps and high-performance <br />
+            <span className="text-[#2B6A65] dark:text-teal-400 font-bold">digital solutions</span>
+          </motion.h1>
+        </div>
+
+        {/* Description with highlights and improved readability */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.3 }}
-          className="text-sm sm:text-lg text-neutral-500 max-w-2xl mx-auto font-light leading-relaxed text-balance"
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-3xl font-normal leading-relaxed text-balance"
         >
-          Senior Software Engineer with 5 years of experience engineering scalable web and cross-platform mobile solutions. Specialized in React Native development, functional state design (Redux, Zustand), and high-performance Python backend integration with FastAPI.
+          I'm <span className="font-semibold text-[#0A2540] dark:text-white">Vinay Kumar Yadav</span>, a <span className="font-semibold text-[#0A2540] dark:text-white">Senior React Native & React Engineer</span> and the creator of <span className="font-semibold text-[#0A2540] dark:text-white">Feedlyx</span>. I have <span className="font-semibold text-[#0A2540] dark:text-white">5+ years of experience</span> engineering <span className="font-semibold text-[#2B6A65] dark:text-teal-400">AI-powered mobile and cross-platform web applications</span> using React, React Native, TypeScript, and Node.js.
         </motion.p>
 
         {/* Action Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex flex-wrap justify-center gap-4 pt-4"
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="flex flex-wrap gap-4 pt-4"
         >
           <button
             onClick={() => onScrollToSection('ventures')}
-            className="group flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-medium text-sm hover:bg-neutral-200 transition-all font-display shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+            className="group flex items-center gap-2 px-6 py-3 rounded-xl bg-[#0A2540] dark:bg-white text-white dark:text-slate-900 font-semibold text-sm hover:bg-[#11385c] dark:hover:bg-slate-100 transition-all font-display shadow-sm"
           >
             Explore Projects
             <ArrowDown className="w-4 h-4 transition-transform group-hover:translate-y-0.5" />
           </button>
-          
+
           <button
-            onClick={() => onScrollToSection('sandbox')}
-            className="flex items-center gap-2 px-6 py-3 rounded-full bg-neutral-950 hover:bg-neutral-900 border border-neutral-800 text-neutral-300 hover:text-white font-mono text-sm transition-all"
+            onClick={() => onScrollToSection('contact')}
+            className="flex items-center gap-2 px-6 py-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-900/40 text-slate-700 dark:text-slate-200 font-semibold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-all font-display"
           >
-            <Terminal className="w-4 h-4 text-cyan-400" />
-            sandbox.exe
+            Let's Talk
           </button>
         </motion.div>
 
       </div>
-
-      {/* Mini stats or badges floating */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.7 }}
-        transition={{ delay: 0.8 }}
-        className="absolute bottom-4 left-6 right-6 flex justify-between items-center text-[10px] font-mono text-neutral-600 uppercase tracking-widest pointer-events-none"
-      >
-        <div className="flex items-center gap-1">
-          <Code className="w-3.5 h-3.5" />
-          EST. 2020 &bull; BENGALURU, INDIA
-        </div>
-        <div className="hidden md:block">
-          PRESS ⌘K FOR COMMANDS
-        </div>
-      </motion.div>
     </section>
   );
 };

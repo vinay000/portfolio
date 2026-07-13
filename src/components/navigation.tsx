@@ -1,5 +1,6 @@
 import React from 'react';
-import { Search } from 'lucide-react';
+import { Menu, Sun, Moon, Search } from 'lucide-react';
+import { useTheme } from './ThemeProvider';
 
 interface NavigationProps {
   onOpenCommandMenu: () => void;
@@ -7,70 +8,58 @@ interface NavigationProps {
 }
 
 export const Navigation: React.FC<NavigationProps> = ({ onOpenCommandMenu, onScrollToSection }) => {
+  const { theme, toggleTheme } = useTheme();
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 px-4 py-3 md:px-8">
-      <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-2.5 rounded-full bg-neutral-950/70 border border-neutral-900/60 backdrop-blur-md">
+    <nav className="fixed top-0 left-0 right-0 z-50 px-4 py-4 md:px-12 transition-all duration-300">
+      <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-3 rounded-full bg-white/85 dark:bg-slate-900/80 border border-slate-200/50 dark:border-slate-800/60 backdrop-blur-md shadow-md">
         
-        {/* Brand/Logo */}
+        {/* Brand/Logo styled like 'showcasy.' */}
         <div 
           onClick={() => onScrollToSection('hero')} 
-          className="flex items-center gap-2 cursor-pointer group"
+          className="flex items-center gap-0.5 cursor-pointer select-none group"
         >
-          <div className="relative w-7 h-7 rounded-full bg-white/10 flex items-center justify-center overflow-hidden border border-white/20 transition-transform group-hover:scale-105">
-            <span className="text-white text-xs font-semibold font-display">VY</span>
-            <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-          </div>
-          <span className="font-semibold text-sm tracking-wide text-white group-hover:text-cyan-400 transition-colors">
-            vinay.yadav
+          <span className="font-display font-semibold text-lg tracking-tight text-[#111113] dark:text-white transition-colors">
+            vinay
           </span>
+          <span className="ml-1 px-2.5 py-0.5 rounded-lg bg-[#111113] text-white dark:bg-white dark:text-black font-display font-extrabold text-sm transition-colors group-hover:scale-102 duration-300">
+            yadav
+          </span>
+          <span className="font-display font-extrabold text-[#111113] dark:text-white text-lg">.</span>
         </div>
 
-        {/* Links */}
-        <div className="hidden md:flex items-center gap-6">
-          <button 
-            onClick={() => onScrollToSection('ventures')} 
-            className="text-xs font-light text-neutral-400 hover:text-white transition-colors"
-          >
-            ventures
-          </button>
-          <button 
-            onClick={() => onScrollToSection('experience')} 
-            className="text-xs font-light text-neutral-400 hover:text-white transition-colors"
-          >
-            timeline
-          </button>
-          <button 
-            onClick={() => onScrollToSection('skills')} 
-            className="text-xs font-light text-neutral-400 hover:text-white transition-colors"
-          >
-            tech stack
-          </button>
-          <button 
-            onClick={() => onScrollToSection('sandbox')} 
-            className="text-xs font-light text-cyan-400 hover:text-cyan-300 transition-colors font-mono"
-          >
-            sandbox.exe
-          </button>
-        </div>
 
-        {/* Right side Command trigger */}
+
+        {/* Right Action buttons */}
         <div className="flex items-center gap-3">
+          {/* Command Search Trigger */}
           <button
             onClick={onOpenCommandMenu}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 transition-colors text-neutral-400 hover:text-slate-200"
+            className="flex items-center justify-center p-2 rounded-full border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/40 text-slate-700 dark:text-slate-350 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            title="Search commands (⌘K)"
           >
-            <Search className="w-3.5 h-3.5" />
-            <span className="text-[11px] font-mono tracking-tight hidden sm:inline">Search</span>
-            <span className="text-[9px] font-mono bg-neutral-950 px-1.5 py-0.5 rounded text-neutral-500 border border-neutral-800/80 hidden sm:inline">
-              ⌘K
-            </span>
+            <Search className="w-4 h-4" />
           </button>
 
+          {/* Theme Switcher Toggle */}
           <button
-            onClick={() => onScrollToSection('contact')}
-            className="px-4 py-1.5 text-xs font-light rounded-full bg-white text-black hover:bg-neutral-200 transition-all font-display shadow-[0_0_15px_rgba(255,255,255,0.15)]"
+            onClick={toggleTheme}
+            className="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/40 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all text-[#111113] dark:text-white"
+            title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
           >
-            let's build
+            {theme === 'dark' ? (
+              <Sun className="w-4 h-4 text-amber-500 fill-amber-500/10" />
+            ) : (
+              <Moon className="w-4 h-4 text-zinc-700 fill-zinc-700/10" />
+            )}
+          </button>
+
+          {/* Hamburger Menu Icon */}
+          <button
+            onClick={() => onOpenCommandMenu()}
+            className="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/40 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          >
+            <Menu className="w-4 h-4 text-[#111113] dark:text-white" />
           </button>
         </div>
 

@@ -33,9 +33,9 @@ export const PublicLayout: React.FC = () => {
       const sectionId = action.replace('scroll-', '');
       handleScrollToSection(sectionId);
     } else if (action === 'link-github') {
-      window.open('https://github.com', '_blank');
+      window.open('https://github.com/vinay000', '_blank');
     } else if (action === 'link-linkedin') {
-      window.open('https://linkedin.com', '_blank');
+      window.open('https://www.linkedin.com/in/vinay000', '_blank');
     } else if (action === 'link-twitter') {
       window.open('https://twitter.com', '_blank');
     }
@@ -54,10 +54,11 @@ export const PublicLayout: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-black text-slate-100 selection:bg-white/15 selection:text-white overflow-x-hidden">
-      {/* Universal Grid Background */}
-      <div className="fixed inset-0 grid-bg-fine opacity-40 pointer-events-none -z-50" />
-      <div className="fixed inset-0 bg-gradient-to-t from-black via-transparent to-black pointer-events-none -z-40" />
+    <div className="relative min-h-screen bg-slate-50 dark:bg-[#0B0F17] text-[#334155] dark:text-[#CBD5E1] transition-colors duration-300 selection:bg-slate-200 dark:selection:bg-slate-800 overflow-x-hidden">
+      {/* Universal Grid Background (extremely subtle) */}
+      <div className="fixed inset-0 grid-bg-fine opacity-20 dark:opacity-5 pointer-events-none -z-50" />
+      <div className="fixed inset-0 bg-gradient-to-t from-transparent via-transparent to-slate-100/30 dark:to-black/10 pointer-events-none -z-40" />
+
 
       {/* Top Navbar */}
       <Navigation 

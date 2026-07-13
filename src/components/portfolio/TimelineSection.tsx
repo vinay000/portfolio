@@ -1,126 +1,183 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Calendar, ChevronRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Briefcase, ChevronDown } from 'lucide-react';
 
 interface CareerStep {
   period: string;
   role: string;
   company: string;
   description: string;
-  systemLog: string;
-  bullets: string[];
+  bullets: React.ReactNode[];
+  tags: string[];
+  colorClass: string;
 }
 
 export const TimelineSection: React.FC = () => {
+  const [expanded, setExpanded] = useState<Record<number, boolean>>({});
+
+  const toggleExpand = (index: number) => {
+    setExpanded((prev) => ({ ...prev, [index]: !prev[index] }));
+  };
+
   const history: CareerStep[] = [
     {
-      period: 'Sept 2025 — Feb 2026',
-      role: 'Senior Software Engineer',
-      company: 'GeekyAnts',
-      description: 'Worked on scalable React Native and web applications, collaborating with global teams to optimize performance and code quality.',
-      systemLog: 'REACT_NATIVE_CORE.TSX',
+      period: 'Mar 2026 — Present',
+      role: 'Founder & Full Stack Engineer',
+      company: 'Feedlyx',
+      description: 'Building Feedlyx, a multi-tenant customer feedback SaaS with dynamic routing and OpenAI sentiment analytics.',
       bullets: [
-        'Developed scalable React Native mobile and high-fidelity web features to improve product responsiveness.',
-        'Collaborated directly with cross-functional product owners to deliver key features under strict timelines.',
-        'Contributed to core performance optimization and established robust code formatting and quality standards.'
-      ]
+        <>Sole developer owning the product design, software architecture, development, and deployment <span className="font-semibold text-slate-900 dark:text-white">end-to-end</span>.</>,
+        <>Architected full stack solutions using <span className="font-semibold text-slate-900 dark:text-white">React, TypeScript, Node.js, Express, MongoDB, and Vercel</span>.</>,
+        <>Implemented stateless JWT SSO, embeddable user feedback widgets, and automated <span className="font-semibold text-[#2B6A65] dark:text-teal-400">OpenAI duplicate feedback detector</span>.</>
+      ],
+      tags: ['SaaS', 'Founder', 'AI Integration', 'Vercel'],
+      colorClass: 'bg-[#2B6A65]' // Forest Teal
+    },
+    {
+      period: 'Sept 2025 — Feb 2026',
+      role: 'Senior Software Engineer II',
+      company: 'GeekyAnts',
+      description: 'Led end-to-end development of cross-platform mobile and web applications, focusing on AI-assisted treatment sharing and dental dashboards.',
+      bullets: [
+        <>Led development of cross-platform dental applications enabling <span className="font-semibold text-[#2B6A65] dark:text-teal-400">AI-assisted treatment planning</span> via OpenAI APIs.</>,
+        <>Designed secure multi-tenant workflows for doctor-to-lab data routing and patient record sharing.</>,
+        <>Spearheaded development of a merchant transaction app providing <span className="font-semibold text-slate-900 dark:text-white">real-time sales tracking</span> and business dashboards.</>
+      ],
+      tags: ['React Native', 'Next.js', 'AI Dental Planner', 'FastAPI'],
+      colorClass: 'bg-[#F1BE42]' // Warm Yellow
     },
     {
       period: 'Nov 2021 — Jul 2025',
       role: 'Senior Software Engineer',
       company: 'In Time Tec',
-      description: 'Led core product delivery for international clients, driving cross-platform mobile initiatives, team management, and release automation.',
-      systemLog: 'FASTLANE_DEPLOY.SH',
+      description: 'Led core product delivery for international clients, driving cross-platform mobile initiatives, team management, and release automation. Promoted from Software Engineer (Nov 2021) to Senior Software Engineer (Jan 2024).',
       bullets: [
-        'Led a team of 4–5 engineers, managing planning, client interactions, production deployments, and technical demos.',
-        'Built 3 high-volume mobile apps and 2 global web applications, introducing modular reusable architectures.',
-        'Implemented end-to-end CI/CD pipelines using GitHub Actions & Fastlane, saving up to 4 hours per release.',
-        'Increased regression test coverage using Jest & Appium, boosting regression bug detection rates by 35%.',
-        'Mentored 6+ junior developers through structured technical sessions and thorough code peer reviews.'
-      ]
+        <>Managed technical sprint planning, client demos, and led a team of 4–5 engineering members.</>,
+        <>Coordinated closely to launch three major mobile apps and two web apps, used by thousands of users globally.</>,
+        <>Set up CI/CD workflows using <span className="font-semibold text-slate-900 dark:text-white">GitHub Actions and Fastlane</span>, automating deployment releases.</>,
+        <>Improved testing coverage with Jest and Appium, increasing regression bug detection rates by <span className="font-semibold text-slate-900 dark:text-white">35%</span>.</>
+      ],
+      tags: ['Team Lead', 'Fastlane', 'Jest & Appium', 'CI/CD'],
+      colorClass: 'bg-[#E75A36]' // Coral Red
     },
     {
       period: 'Sept 2020 — Oct 2021',
       role: 'Software Engineer',
       company: 'SimplexMLM',
-      description: 'Focused on frontend interface development, accessibility, and high-performance user engagements.',
-      systemLog: 'FRONTEND_OPTIMIZE.JS',
+      description: 'Focused on frontend interface development, accessibility compliance, and high-performance web user experiences.',
       bullets: [
-        'Boosted loading performance by 25% through codebase refactoring and component lazy-loading.',
-        'Improved global accessibility ratings by 20% and user engagement by 15% using React & TypeScript.',
-        'Shipped 4 core high-impact features in under 6 months adhering to strict Agile/Scrum best practices.'
-      ]
+        <>Refactored legacy components, resulting in a <span className="font-semibold text-slate-900 dark:text-white">25% reduction in load times</span> and improved device stability.</>,
+        <>Delivered accessible web interfaces using React.js and TypeScript, leading to a <span className="font-semibold text-slate-900 dark:text-white">20% boost in accessibility compliance</span>.</>,
+        <>Coordinated with Design/QA to roll out 4 high-impact features in under 6 months using Agile sprints.</>
+      ],
+      tags: ['Accessibility', 'React JS', 'Performance', 'Agile'],
+      colorClass: 'bg-[#2B6A65]' // Forest Teal
     }
   ];
 
   return (
-    <section id="experience" className="relative py-24 md:py-32 px-6 max-w-4xl mx-auto space-y-16">
+    <section 
+      id="experience" 
+      className="relative flex flex-col items-start pt-20 pb-16 w-full text-left border-b border-slate-100 dark:border-slate-800/80"
+    >
       
-      {/* Background Neon Elements */}
-      <div className="absolute top-1/2 left-0 w-80 h-80 bg-purple-500/5 rounded-full blur-[100px] pointer-events-none -z-10" />
-
       {/* Header */}
-      <div className="space-y-4">
-        <div className="flex items-center gap-2 text-xs font-mono text-purple-400 tracking-wider uppercase">
-          <Calendar className="w-3.5 h-3.5" />
-          chronology.log
-        </div>
-        <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white font-display">
+      <div className="space-y-3 mb-10">
+        <h2 className="text-3xl sm:text-4.5xl font-bold tracking-tight text-[#0A2540] dark:text-white font-display select-none">
           Professional Timeline
         </h2>
-        <p className="text-base md:text-lg text-neutral-400 max-w-xl font-light leading-relaxed">
-          A proven 5-year trajectory of technical ownership, client success, product deliveries, and engineering mentorship.
+        <p className="text-base sm:text-lg text-slate-650 dark:text-slate-350 max-w-2xl font-normal leading-relaxed">
+          A proven 5-year trajectory of technical ownership, software architecture, client success, and engineering mentorship.
         </p>
       </div>
 
-      {/* Timeline Layout */}
-      <div className="relative border-l border-neutral-900 ml-4 md:ml-6 pl-8 md:pl-12 space-y-12">
-        {/* Glowing vertical line overlay */}
-        <div className="absolute top-0 bottom-0 left-0 w-[1px] bg-gradient-to-b from-purple-500 via-cyan-500 to-transparent opacity-50" />
-
-        {history.map((step, index) => (
-          <motion.div
-            key={step.company}
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
-            className="relative space-y-4 group"
-          >
-            {/* Pulsing indicator on the line */}
-            <span className="absolute -left-8 md:-left-12 -translate-x-1/2 top-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-black border-2 border-neutral-800 transition-colors group-hover:border-purple-400">
-              <span className="h-2 w-2 rounded-full bg-neutral-800 transition-colors group-hover:bg-purple-400 animate-pulse" />
-            </span>
-
-            {/* Step Header */}
-            <div className="flex flex-wrap items-center gap-2 md:gap-4">
-              <span className="text-sm font-mono text-neutral-400">{step.period}</span>
-              <span className="text-sm font-mono bg-neutral-950 px-2.5 py-0.5 rounded border border-neutral-900 text-purple-400 font-medium">
-                {step.company}
-              </span>
-              <span className="text-slate-400 text-sm font-mono hidden md:inline">
-                [{step.systemLog}]
-              </span>
-            </div>
-
-            {/* Step Card */}
-            <div className="rounded-xl p-6 bg-neutral-950/20 border border-neutral-900/80 hover:border-neutral-800/80 transition-colors glass-panel space-y-4">
-              <div>
-                <h3 className="text-xl font-bold text-white font-display">{step.role}</h3>
-                <p className="text-sm text-neutral-300 font-light mt-1.5">{step.description}</p>
+      {/* Timeline Project-Style Cards Stack */}
+      <div className="w-full space-y-6">
+        {history.map((step, idx) => {
+          const isExpanded = !!expanded[idx];
+          return (
+            <motion.div
+              key={step.company}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.5, delay: idx * 0.05 }}
+              className="flex flex-col lg:grid lg:grid-cols-12 gap-6 items-start p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800/80 shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:hover:bg-slate-900/90 transition-all duration-300 w-full group"
+            >
+              
+              {/* Col 1: Icon & Company Name & Date (Left) */}
+              <div className="lg:col-span-3 flex items-center gap-3.5 w-full">
+                <div className={`w-12 h-12 rounded-full ${step.colorClass} flex items-center justify-center shrink-0 shadow-sm`}>
+                  <Briefcase className="w-5 h-5 text-white" />
+                </div>
+                <div className="min-w-0">
+                  <h3 className="text-lg font-bold text-[#0A2540] dark:text-white font-display truncate leading-tight">
+                    {step.company}
+                  </h3>
+                  <span className="text-[10px] font-mono font-bold text-slate-400 dark:text-slate-500 mt-1 block">
+                    {step.period}
+                  </span>
+                </div>
               </div>
 
-              <ul className="space-y-2">
-                {step.bullets.map((bullet, idx) => (
-                  <li key={idx} className="flex items-start gap-2.5 text-sm text-neutral-400 leading-relaxed font-light">
-                    <ChevronRight className="w-4 h-4 mt-0.5 text-purple-500/80 shrink-0" />
-                    <span>{bullet}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </motion.div>
-        ))}
+              {/* Col 2: Role & Achievement Bullets (Center) */}
+              <div className="lg:col-span-6 w-full text-left">
+                <h4 className="text-sm font-bold text-[#2B6A65] dark:text-teal-400 uppercase tracking-wide">
+                  {step.role}
+                </h4>
+                <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed font-normal mt-1">
+                  {step.description}
+                </p>
+
+                {/* Collapsible toggle button */}
+                <button
+                  onClick={() => toggleExpand(idx)}
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#2B6A65] dark:text-teal-400 hover:text-[#0A2540] dark:hover:text-white transition-colors mt-3 select-none"
+                >
+                  {isExpanded ? 'Hide Achievements' : 'Show Achievements'}
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} />
+                </button>
+                
+                {/* Collapsible content area */}
+                <AnimatePresence initial={false}>
+                  {isExpanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25, ease: 'easeInOut' }}
+                      className="overflow-hidden"
+                    >
+                      <ul className="space-y-2 mt-4 pl-1 border-t border-slate-100/60 dark:border-slate-800/40 pt-3">
+                        {step.bullets.map((bullet, bulletIdx) => (
+                          <li key={bulletIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-normal text-left animate-fadeIn">
+                            <span className="text-[#2B6A65] dark:text-teal-400 font-bold select-none shrink-0 mt-[2px]">—</span>
+                            <span>{bullet}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Col 3: Skill Tags & Info (Right) */}
+              <div className="lg:col-span-3 flex lg:flex-col items-start lg:items-end justify-between lg:justify-start gap-4 w-full h-full border-t lg:border-t-0 border-slate-100/60 dark:border-slate-800/40 pt-4 lg:pt-0">
+                <div className="flex flex-wrap gap-1.5 lg:justify-end">
+                  {step.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-[10px] font-medium px-2 py-0.5 rounded bg-slate-50 dark:bg-slate-800/50 text-slate-600 dark:text-slate-350 border border-slate-100 dark:border-slate-800"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+            </motion.div>
+          );
+        })}
       </div>
 
     </section>

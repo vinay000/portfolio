@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
-import { Terminal, Briefcase, Code, Mail, Search, Github, Linkedin, Twitter } from 'lucide-react';
+import { Home, Folder, Briefcase, Code, Mail, Search, Github } from 'lucide-react';
 
 interface FloatingDockProps {
   onOpenCommandMenu: () => void;
@@ -11,14 +11,13 @@ export const FloatingDock: React.FC<FloatingDockProps> = ({ onOpenCommandMenu, o
   const mouseX = useMotionValue(Infinity);
 
   const dockItems = [
-    { label: 'Home', icon: <Terminal className="w-5 h-5" />, action: () => onScrollToSection('hero') },
-    { label: 'Ventures', icon: <Briefcase className="w-5 h-5" />, action: () => onScrollToSection('ventures') },
-    { label: 'Experience', icon: <Briefcase className="w-5 h-5 text-purple-400" />, action: () => onScrollToSection('experience') },
+    { label: 'Home', icon: <Home className="w-5 h-5" />, action: () => onScrollToSection('hero') },
+    { label: 'Creations', icon: <Folder className="w-5 h-5" />, action: () => onScrollToSection('ventures') },
+    { label: 'Experience', icon: <Briefcase className="w-5 h-5" />, action: () => onScrollToSection('experience') },
     { label: 'Skills', icon: <Code className="w-5 h-5" />, action: () => onScrollToSection('skills') },
-    { label: 'Sandbox', icon: <Terminal className="w-5 h-5 text-cyan-400" />, action: () => onScrollToSection('sandbox') },
-    { label: 'Contact', icon: <Mail className="w-5 h-5 text-red-400" />, action: () => onScrollToSection('contact') },
-    { label: 'Search', icon: <Search className="w-5 h-5 text-amber-400" />, action: onOpenCommandMenu },
-    { label: 'GitHub', icon: <Github className="w-5 h-5" />, action: () => window.open('https://github.com', '_blank') },
+    { label: 'Contact', icon: <Mail className="w-5 h-5" />, action: () => onScrollToSection('contact') },
+    { label: 'Search', icon: <Search className="w-5 h-5" />, action: onOpenCommandMenu },
+    { label: 'GitHub', icon: <Github className="w-5 h-5" />, action: () => window.open('https://github.com/vinay000', '_blank') },
   ];
 
   return (
@@ -31,11 +30,8 @@ export const FloatingDock: React.FC<FloatingDockProps> = ({ onOpenCommandMenu, o
       <div
         onMouseMove={(e) => mouseX.set(e.clientX)}
         onMouseLeave={() => mouseX.set(Infinity)}
-        className="flex items-end gap-3 px-4 py-3 rounded-2xl bg-neutral-950/80 border border-neutral-800/80 backdrop-blur-xl shadow-2xl glass-panel relative"
+        className="flex items-end gap-3 px-4 py-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800/80 backdrop-blur-xl shadow-xl relative"
       >
-        {/* Glow behind dock */}
-        <div className="absolute -inset-[1px] bg-gradient-to-r from-purple-500/10 via-cyan-500/10 to-emerald-500/10 rounded-2xl -z-10 blur-xl opacity-80" />
-
         {dockItems.map((item, idx) => (
           <DockIcon key={idx} mouseX={mouseX} item={item} />
         ))}
@@ -76,7 +72,7 @@ const DockIcon: React.FC<DockIconProps> = ({ mouseX, item }) => {
       onClick={item.action}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative rounded-xl bg-neutral-900 border border-neutral-800/50 flex items-center justify-center cursor-pointer transition-colors hover:bg-neutral-800 hover:border-neutral-700/80 text-neutral-400 hover:text-white"
+      className="relative rounded-xl bg-zinc-50 dark:bg-[#1E1E20] border border-zinc-200/50 dark:border-zinc-800/50 flex items-center justify-center cursor-pointer transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
     >
       <AnimatePresence>
         {isHovered && (
@@ -84,7 +80,7 @@ const DockIcon: React.FC<DockIconProps> = ({ mouseX, item }) => {
             initial={{ opacity: 0, y: 10, x: '-50%' }}
             animate={{ opacity: 1, y: 0, x: '-50%' }}
             exit={{ opacity: 0, y: 10, x: '-50%' }}
-            className="absolute -top-10 left-1/2 px-2 py-1 bg-neutral-950 border border-neutral-800 text-[10px] font-mono text-slate-200 rounded-md whitespace-nowrap pointer-events-none"
+            className="absolute -top-10 left-1/2 px-2 py-1 bg-zinc-900 dark:bg-zinc-950 border border-zinc-950 dark:border-zinc-800 text-[10px] font-mono text-white dark:text-slate-200 rounded-md whitespace-nowrap pointer-events-none"
           >
             {item.label}
           </motion.div>
