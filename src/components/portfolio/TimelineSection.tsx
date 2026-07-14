@@ -86,7 +86,7 @@ export const TimelineSection: React.FC = () => {
         <h2 className="text-3xl sm:text-4.5xl font-bold tracking-tight text-[#0A2540] dark:text-white font-display select-none">
           Professional Timeline
         </h2>
-        <p className="text-base sm:text-lg text-slate-650 dark:text-slate-350 max-w-2xl font-normal leading-relaxed">
+        <p className="text-base sm:text-lg text-slate-600 dark:text-slate-100 max-w-2xl font-normal leading-relaxed">
           A proven 5-year trajectory of technical ownership, software architecture, client success, and engineering mentorship.
         </p>
       </div>
@@ -167,7 +167,7 @@ export const TimelineSection: React.FC = () => {
                   {step.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-[10px] font-medium px-2 py-0.5 rounded bg-slate-50 dark:bg-slate-800/50 text-slate-600 dark:text-slate-350 border border-slate-100 dark:border-slate-800"
+                      className="text-[10px] font-medium px-2 py-0.5 rounded bg-slate-50 dark:bg-slate-800/50 text-slate-600 dark:text-slate-300 border border-slate-100 dark:border-slate-800"
                     >
                       {tag}
                     </span>

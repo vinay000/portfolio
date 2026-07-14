@@ -115,7 +115,7 @@ export const CommandMenu: React.FC<CommandMenuProps> = ({ isOpen, onClose, onSel
             {/* Content List */}
             <div className="max-h-[300px] overflow-y-auto p-2 space-y-4">
               {filteredCommands.length === 0 ? (
-                <div className="text-center py-8 text-slate-550 dark:text-slate-400 text-sm font-mono">
+                <div className="text-center py-8 text-slate-500 dark:text-slate-400 text-sm font-mono">
                   No commands found for "{search}"
                 </div>
               ) : (
@@ -139,7 +139,7 @@ export const CommandMenu: React.FC<CommandMenuProps> = ({ isOpen, onClose, onSel
                               className={`flex items-center justify-between px-3 py-2.5 rounded-lg cursor-pointer transition-colors ${
                                 isSelected
                                   ? 'bg-slate-100 dark:bg-slate-800/80 text-slate-900 dark:text-white border-slate-205 dark:border-slate-800'
-                                  : 'text-slate-600 dark:text-slate-350 hover:text-slate-900 dark:hover:text-white'
+                                  : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
                               }`}
                             >
                               <div className="flex items-center gap-3">
@@ -164,7 +164,7 @@ export const CommandMenu: React.FC<CommandMenuProps> = ({ isOpen, onClose, onSel
             </div>
 
             {/* Footer */}
-            <div className="flex justify-between items-center px-4 py-3 bg-slate-50 dark:bg-slate-950 border-t border-slate-100 dark:border-slate-800 text-[10px] font-mono text-slate-550 dark:text-slate-400 font-semibold select-none">
+            <div className="flex justify-between items-center px-4 py-3 bg-slate-50 dark:bg-slate-950 border-t border-slate-100 dark:border-slate-800 text-[10px] font-mono text-slate-500 dark:text-slate-400 font-semibold select-none">
               <div className="flex items-center gap-2">
                 <span>Use arrows</span>
                 <span className="border border-slate-205 dark:border-slate-800 bg-white dark:bg-slate-900 px-1 rounded">↑</span>

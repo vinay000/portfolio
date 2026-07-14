@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu, Sun, Moon, Search } from 'lucide-react';
+import { Sun, Moon, Search } from 'lucide-react';
 import { useTheme } from './ThemeProvider';
 
 interface NavigationProps {
@@ -35,7 +35,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenCommandMenu, onScr
           {/* Command Search Trigger */}
           <button
             onClick={onOpenCommandMenu}
-            className="flex items-center justify-center p-2 rounded-full border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/40 text-slate-700 dark:text-slate-350 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            className="flex items-center justify-center p-2 rounded-full border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/40 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
             title="Search commands (⌘K)"
           >
             <Search className="w-4 h-4" />
@@ -52,14 +52,6 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenCommandMenu, onScr
             ) : (
               <Moon className="w-4 h-4 text-zinc-700 fill-zinc-700/10" />
             )}
-          </button>
-
-          {/* Hamburger Menu Icon */}
-          <button
-            onClick={() => onOpenCommandMenu()}
-            className="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/40 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-          >
-            <Menu className="w-4 h-4 text-[#111113] dark:text-white" />
           </button>
         </div>
 

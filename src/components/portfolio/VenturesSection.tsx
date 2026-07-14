@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Laptop, Smartphone, Shield, Palette, ArrowUpRight } from 'lucide-react';
+import { Laptop, Smartphone, Shield, Palette } from 'lucide-react';
 
 interface Project {
   title: string;
@@ -106,10 +106,10 @@ export const VenturesSection: React.FC = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
             <div className="md:col-span-2 space-y-4">
-              <p className="text-base sm:text-lg text-slate-650 dark:text-slate-300 font-normal leading-relaxed">
+              <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
                 I help founders and engineering teams build high-performance, AI-powered mobile apps and cross-platform web solutions. By combining production-grade React Native expertise with OpenAI integrations and custom graphics rendering, I turn complex requirements into clean products.
               </p>
-              <p className="text-base sm:text-lg text-slate-650 dark:text-slate-300 font-normal leading-relaxed">
+              <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
                 We focus on clean visual hierarchies, smooth rendering paths, and automated deployment structures to accelerate time-to-market.
               </p>
             </div>
@@ -138,7 +138,7 @@ export const VenturesSection: React.FC = () => {
           <h2 className="text-3xl sm:text-4.5xl font-bold tracking-tight text-[#0A2540] dark:text-white font-display select-none">
             Selected Creations
           </h2>
-          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-350 max-w-2xl font-normal leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-100 max-w-2xl font-normal leading-relaxed">
             A track record of designing and delivering production-ready mobile applications and web systems.
           </p>
         </div>
@@ -198,18 +198,10 @@ export const VenturesSection: React.FC = () => {
                   ))}
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div>
                   <span className="hidden lg:inline-block text-[10px] font-mono font-bold px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-900 whitespace-nowrap">
                     {project.stat}
                   </span>
-                  
-                  <a
-                    href={project.link}
-                    className="inline-flex items-center gap-0.5 text-xs font-bold text-[#0A2540] dark:text-teal-400 hover:text-[#2B6A65] dark:hover:text-white transition-colors"
-                  >
-                    Details
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </a>
                 </div>
               </div>
 
