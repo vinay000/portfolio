@@ -11,7 +11,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onScrollToSection }) =
   return (
     <section
       id="hero"
-      className="relative flex flex-col justify-center items-start pt-16 pb-12 text-left overflow-hidden border-b border-zinc-200/50 dark:border-zinc-800/40 w-full"
+      className="relative flex flex-col justify-center items-start pt-6 sm:pt-16 pb-12 text-left overflow-hidden border-b border-zinc-200/50 dark:border-zinc-800/40 w-full"
     >
       <div className="max-w-4xl w-full space-y-6 relative z-10">
 
@@ -78,8 +78,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onScrollToSection }) =
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="text-[2.5rem] sm:text-[3.8rem] md:text-[4.5rem] font-bold tracking-tight leading-[1.1] text-[#0A2540] dark:text-white font-display select-none"
           >
-            Engineering AI-powered <br />
-            apps and high-performance <br />
+            Engineering AI-powered <br className="hidden sm:inline" />
+            apps and high-performance <br className="hidden sm:inline" />
             <span className="text-[#2B6A65] dark:text-teal-400 font-bold">digital solutions</span>
           </motion.h1>
         </div>

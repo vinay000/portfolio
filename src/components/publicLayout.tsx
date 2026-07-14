@@ -67,7 +67,7 @@ export const PublicLayout: React.FC = () => {
       />
 
       {/* Main Content */}
-      <main className="relative pt-24 pb-20 z-10">
+      <main className="relative pt-20 sm:pt-24 pb-20 z-10">
         <Outlet />
       </main>
 

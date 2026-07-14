@@ -17,7 +17,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenCommandMenu, onScr
         {/* Brand/Logo styled like 'showcasy.' */}
         <div 
           onClick={() => onScrollToSection('hero')} 
-          className="flex items-center gap-0.5 cursor-pointer select-none group"
+          className="flex flex-row flex-nowrap items-center gap-0.5 cursor-pointer select-none group"
         >
           <span className="font-display font-semibold text-lg tracking-tight text-[#111113] dark:text-white transition-colors">
             vinay
