@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Briefcase, ChevronDown } from 'lucide-react';
+import { Briefcase, ChevronDown, ExternalLink } from 'lucide-react';
 
 interface CareerStep {
   period: string;
   role: string;
   company: string;
+  companyUrl?: string;
   description: string;
   bullets: React.ReactNode[];
   tags: string[];
@@ -37,6 +38,7 @@ export const TimelineSection: React.FC = () => {
       period: 'Sept 2025 — Feb 2026',
       role: 'Senior Software Engineer II',
       company: 'GeekyAnts',
+      companyUrl: 'https://geekyants.com/en-in',
       description: 'Led end-to-end development of cross-platform mobile and web applications, focusing on AI-assisted treatment sharing and dental dashboards.',
       bullets: [
         <>Led development of cross-platform dental applications enabling <span className="font-semibold text-[#2B6A65] dark:text-teal-400">AI-assisted treatment planning</span> via OpenAI APIs.</>,
@@ -50,6 +52,7 @@ export const TimelineSection: React.FC = () => {
       period: 'Nov 2021 — Jul 2025',
       role: 'Senior Software Engineer',
       company: 'In Time Tec',
+      companyUrl: 'https://www.intimetec.com/',
       description: 'Led core product delivery for international clients, driving cross-platform mobile initiatives, team management, and release automation. Promoted from Software Engineer (Nov 2021) to Senior Software Engineer (Jan 2024).',
       bullets: [
         <>Managed technical sprint planning, client demos, and led a team of 4–5 engineering members.</>,
@@ -64,6 +67,7 @@ export const TimelineSection: React.FC = () => {
       period: 'Sept 2020 — Oct 2021',
       role: 'Software Engineer',
       company: 'SimplexMLM',
+      companyUrl: 'https://simplexmlm.com/',
       description: 'Focused on frontend interface development, accessibility compliance, and high-performance web user experiences.',
       bullets: [
         <>Refactored legacy components, resulting in a <span className="font-semibold text-slate-900 dark:text-white">25% reduction in load times</span> and improved device stability.</>,
@@ -112,7 +116,19 @@ export const TimelineSection: React.FC = () => {
                 </div>
                 <div className="min-w-0">
                   <h3 className="text-lg font-bold text-[#0A2540] dark:text-white font-display truncate leading-tight">
-                    {step.company}
+                    {step.companyUrl ? (
+                      <a 
+                        href={step.companyUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="hover:text-[#2B6A65] dark:hover:text-teal-400 transition-colors inline-flex items-center gap-1.5 group/company-link"
+                      >
+                        {step.company}
+                        <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover/company-link:text-[#2B6A65] dark:group-hover/company-link:text-teal-400 transition-colors shrink-0" />
+                      </a>
+                    ) : (
+                      step.company
+                    )}
                   </h3>
                   <span className="text-[10px] font-mono font-bold text-slate-400 dark:text-slate-500 mt-1 block">
                     {step.period}
