@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Laptop, Smartphone, Shield, Palette } from 'lucide-react';
+import { Laptop, Smartphone, Shield, Palette, ExternalLink } from 'lucide-react';
 
 interface Project {
   title: string;
@@ -51,7 +51,7 @@ export const VenturesSection: React.FC = () => {
       icon: <Smartphone className="w-5 h-5 text-white" />,
       colorClass: 'bg-[#F1BE42]', // Warm Yellow
       stat: 'FinTech',
-      link: '#'
+      link: 'https://apps.apple.com/gb/app/paypoint-merchant-mobile-app/id6615070817'
     },
     {
       title: 'GOM Mix Video Editor',
@@ -63,7 +63,7 @@ export const VenturesSection: React.FC = () => {
       icon: <Palette className="w-5 h-5 text-white" />,
       colorClass: 'bg-[#E75A36]', // Coral Red
       stat: '25% Optimization',
-      link: '#'
+      link: 'https://www.gomlab.com/en/gommix-video-editor'
     },
     {
       title: 'NextGen Agtech',
@@ -75,7 +75,7 @@ export const VenturesSection: React.FC = () => {
       icon: <Laptop className="w-5 h-5 text-white" />,
       colorClass: 'bg-[#E75A36]', // Coral Red
       stat: '10k+ Herds',
-      link: '#'
+      link: 'https://www.nextgenagtech.com/feedlot-green'
     },
     {
       title: 'AEYC Mobile App',
@@ -87,7 +87,7 @@ export const VenturesSection: React.FC = () => {
       icon: <Smartphone className="w-5 h-5 text-white" />,
       colorClass: 'bg-[#2B6A65]', // Forest Teal
       stat: '30k+ Users',
-      link: '#'
+      link: 'https://apps.apple.com/us/app/rise-idahostars/id1658133316'
     }
   ];
 
@@ -145,30 +145,40 @@ export const VenturesSection: React.FC = () => {
 
         {/* Row-wise Project Card Stack */}
         <div className="w-full space-y-6">
-          {projects.map((project, idx) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.5, delay: idx * 0.05 }}
-              className="flex flex-col lg:grid lg:grid-cols-12 gap-6 items-start lg:items-center p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800/80 shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:hover:bg-slate-900/90 transition-all duration-300 w-full group"
-            >
-              
-              {/* Col 1: Icon & Title & Date (Left) */}
-              <div className="lg:col-span-3 flex items-center gap-3.5 w-full">
-                <div className={`w-12 h-12 rounded-full ${project.colorClass} flex items-center justify-center shrink-0 shadow-sm`}>
-                  {project.icon}
+          {projects.map((project, idx) => {
+            const isClickable = project.link && project.link !== '#';
+            return (
+              <motion.a
+                key={project.title}
+                href={isClickable ? project.link : undefined}
+                target={isClickable ? "_blank" : undefined}
+                rel={isClickable ? "noopener noreferrer" : undefined}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.5, delay: idx * 0.05 }}
+                className={`flex flex-col lg:grid lg:grid-cols-12 gap-6 items-start lg:items-center p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800/80 shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:hover:bg-slate-900/90 transition-all duration-300 w-full group ${
+                  isClickable ? 'cursor-pointer hover:border-teal-500/30 dark:hover:border-teal-500/30' : ''
+                }`}
+              >
+                
+                {/* Col 1: Icon & Title & Date (Left) */}
+                <div className="lg:col-span-3 flex items-center gap-3.5 w-full">
+                  <div className={`w-12 h-12 rounded-full ${project.colorClass} flex items-center justify-center shrink-0 shadow-sm`}>
+                    {project.icon}
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="text-lg font-bold text-[#0A2540] dark:text-white font-display truncate leading-tight flex items-center gap-1.5">
+                      {project.title}
+                      {isClickable && (
+                        <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#2B6A65] dark:group-hover:text-teal-400 transition-colors shrink-0" />
+                      )}
+                    </h3>
+                    <span className="text-[10px] font-mono font-bold text-slate-400 dark:text-slate-500 mt-1 block">
+                      {project.date}
+                    </span>
+                  </div>
                 </div>
-                <div className="min-w-0">
-                  <h3 className="text-lg font-bold text-[#0A2540] dark:text-white font-display truncate leading-tight">
-                    {project.title}
-                  </h3>
-                  <span className="text-[10px] font-mono font-bold text-slate-400 dark:text-slate-500 mt-1 block">
-                    {project.date}
-                  </span>
-                </div>
-              </div>
 
               {/* Col 2: Tagline & Description (Center) */}
               <div className="lg:col-span-6 space-y-1.5 w-full text-left">
@@ -205,8 +215,9 @@ export const VenturesSection: React.FC = () => {
                 </div>
               </div>
 
-            </motion.div>
-          ))}
+              </motion.a>
+            );
+          })}
         </div>
       </section>
 
