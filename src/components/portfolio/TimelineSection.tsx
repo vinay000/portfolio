@@ -13,6 +13,54 @@ interface CareerStep {
   colorClass: string;
 }
 
+const CompanyBadge: React.FC<{ step: CareerStep }> = ({ step }) => {
+  const [imgLoaded, setImgLoaded] = useState(false);
+  const [imgError, setImgError] = useState(false);
+
+  const faviconUrl = React.useMemo(() => {
+    if (!step.companyUrl) return null;
+    try {
+      const parsed = new URL(step.companyUrl);
+      return `https://www.google.com/s2/favicons?domain=${parsed.hostname}&sz=128`;
+    } catch {
+      return null;
+    }
+  }, [step.companyUrl]);
+
+  const showFavicon = Boolean(faviconUrl && imgLoaded && !imgError);
+
+  return (
+    <div
+      className={`relative w-12 h-12 rounded-full flex items-center justify-center shrink-0 shadow-sm transition-all duration-300 overflow-hidden ${
+        showFavicon
+          ? 'bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 p-2'
+          : step.colorClass
+      }`}
+    >
+      {/* Fallback Briefcase icon until company logo loads or if unavailable */}
+      {!showFavicon && (
+        <div className="flex items-center justify-center">
+          <Briefcase className="w-5 h-5 text-white" />
+        </div>
+      )}
+
+      {/* Dynamic Favicon / Logo fetched from companyUrl */}
+      {faviconUrl && !imgError && (
+        <img
+          src={faviconUrl}
+          alt={`${step.company} logo`}
+          onLoad={() => setImgLoaded(true)}
+          onError={() => setImgError(true)}
+          className={`w-full h-full object-contain rounded-full transition-opacity duration-300 ${
+            imgLoaded ? 'opacity-100' : 'opacity-0 absolute pointer-events-none'
+          }`}
+          loading="lazy"
+        />
+      )}
+    </div>
+  );
+};
+
 export const TimelineSection: React.FC = () => {
   const [expanded, setExpanded] = useState<Record<number, boolean>>({});
 
@@ -112,9 +160,7 @@ export const TimelineSection: React.FC = () => {
               
               {/* Col 1: Icon & Company Name & Date (Left) */}
               <div className="lg:col-span-3 flex items-center gap-3.5 w-full">
-                <div className={`w-12 h-12 rounded-full ${step.colorClass} flex items-center justify-center shrink-0 shadow-sm`}>
-                  <Briefcase className="w-5 h-5 text-white" />
-                </div>
+                <CompanyBadge step={step} />
                 <div className="min-w-0">
                   <h3 className="text-lg font-bold text-[#0A2540] dark:text-white font-display truncate leading-tight">
                     {step.companyUrl ? (
