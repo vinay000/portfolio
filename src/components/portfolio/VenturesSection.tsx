@@ -13,7 +13,61 @@ interface Project {
   colorClass: string;
   stat: string;
   link: string;
+  domain?: string;
 }
+
+const ProjectBadge: React.FC<{ project: Project }> = ({ project }) => {
+  const [imgLoaded, setImgLoaded] = React.useState(false);
+  const [imgError, setImgError] = React.useState(false);
+
+  const faviconUrl = React.useMemo(() => {
+    let targetDomain = project.domain;
+    if (!targetDomain && project.link && project.link !== '#') {
+      try {
+        const parsed = new URL(project.link);
+        targetDomain = parsed.hostname;
+      } catch {
+        // invalid link
+      }
+    }
+
+    if (!targetDomain) return null;
+    return `https://www.google.com/s2/favicons?domain=${targetDomain}&sz=128`;
+  }, [project.link, project.domain]);
+
+  const showFavicon = Boolean(faviconUrl && imgLoaded && !imgError);
+
+  return (
+    <div
+      className={`relative w-12 h-12 rounded-full flex items-center justify-center shrink-0 shadow-sm transition-all duration-300 overflow-hidden ${
+        showFavicon
+          ? 'bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 p-2'
+          : project.colorClass
+      }`}
+    >
+      {/* Fallback Icon shown until logo is loaded or if no logo is available */}
+      {!showFavicon && (
+        <div className="flex items-center justify-center">
+          {project.icon}
+        </div>
+      )}
+
+      {/* Dynamic Favicon / Logo fetched from link */}
+      {faviconUrl && !imgError && (
+        <img
+          src={faviconUrl}
+          alt={`${project.title} logo`}
+          onLoad={() => setImgLoaded(true)}
+          onError={() => setImgError(true)}
+          className={`w-full h-full object-contain rounded-full transition-opacity duration-300 ${
+            imgLoaded ? 'opacity-100' : 'opacity-0 absolute pointer-events-none'
+          }`}
+          loading="lazy"
+        />
+      )}
+    </div>
+  );
+};
 
 export const VenturesSection: React.FC = () => {
   const projects: Project[] = [
@@ -63,7 +117,8 @@ export const VenturesSection: React.FC = () => {
       icon: <Smartphone className="w-5 h-5 text-white" />,
       colorClass: 'bg-[#F1BE42]', // Warm Yellow
       stat: 'FinTech',
-      link: 'https://apps.apple.com/gb/app/paypoint-merchant-mobile-app/id6615070817'
+      link: 'https://apps.apple.com/gb/app/paypoint-merchant-mobile-app/id6615070817',
+      domain: 'paypoint.com'
     },
     {
       title: 'GOM Mix Video Editor',
@@ -99,7 +154,8 @@ export const VenturesSection: React.FC = () => {
       icon: <Smartphone className="w-5 h-5 text-white" />,
       colorClass: 'bg-[#2B6A65]', // Forest Teal
       stat: '30k+ Users',
-      link: 'https://apps.apple.com/us/app/rise-idahostars/id1658133316'
+      link: 'https://apps.apple.com/us/app/rise-idahostars/id1658133316',
+      domain: 'idahostars.org'
     }
   ];
 
@@ -176,9 +232,7 @@ export const VenturesSection: React.FC = () => {
                 
                 {/* Col 1: Icon & Title & Date (Left) */}
                 <div className="lg:col-span-3 flex items-center gap-3.5 w-full">
-                  <div className={`w-12 h-12 rounded-full ${project.colorClass} flex items-center justify-center shrink-0 shadow-sm`}>
-                    {project.icon}
-                  </div>
+                  <ProjectBadge project={project} />
                   <div className="min-w-0">
                     <h3 className="text-lg font-bold text-[#0A2540] dark:text-white font-display truncate leading-tight flex items-center gap-1.5">
                       {project.title}
