@@ -39,7 +39,7 @@ export const VenturesSection: React.FC = () => {
       icon: <Laptop className="w-5 h-5 text-white" />,
       colorClass: 'bg-[#2B6A65]', // Forest Teal
       stat: 'Active SaaS',
-      link: '#'
+      link: 'https://www.feedlyx.com/'
     },
     {
       title: 'Treatment DDS App',

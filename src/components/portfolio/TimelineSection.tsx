@@ -25,6 +25,7 @@ export const TimelineSection: React.FC = () => {
       period: 'Mar 2026 — Present',
       role: 'Founder & Full Stack Engineer',
       company: 'Feedlyx',
+      companyUrl: 'https://www.feedlyx.com/',
       description: 'Building Feedlyx, a multi-tenant customer feedback SaaS with dynamic routing and OpenAI sentiment analytics.',
       bullets: [
         <>Sole developer owning the product design, software architecture, development, and deployment <span className="font-semibold text-slate-900 dark:text-white">end-to-end</span>.</>,
