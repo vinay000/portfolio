@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Laptop, Smartphone, Shield, Palette, ExternalLink } from 'lucide-react';
+import { Laptop, Smartphone, Shield, Palette, ExternalLink, FileText } from 'lucide-react';
 
 interface Project {
   title: string;
@@ -17,6 +17,18 @@ interface Project {
 
 export const VenturesSection: React.FC = () => {
   const projects: Project[] = [
+    {
+      title: 'Folden',
+      role: 'Founder & Full Stack Engineer',
+      date: '2026 — Present',
+      tagline: 'AI PDF Reader & Document Studio',
+      description: 'An intelligent, privacy-first local PDF reader and document studio featuring offline AI chat, vector search, text editing, vector annotations, and formatting-preserving multi-language translation.',
+      tags: ['Founder', 'React & TypeScript', 'Local AI & RAG', 'PDF Engine'],
+      icon: <FileText className="w-5 h-5 text-white" />,
+      colorClass: 'bg-[#2B6A65]', // Forest Teal
+      stat: 'Live App',
+      link: 'https://folden.online'
+    },
     {
       title: 'Feedlyx',
       role: 'Founder & Full Stack Engineer',
