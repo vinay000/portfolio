@@ -51,7 +51,7 @@ export const VenturesSection: React.FC = () => {
       icon: <Shield className="w-5 h-5 text-white" />,
       colorClass: 'bg-[#F1BE42]', // Warm Yellow
       stat: 'AI-Powered',
-      link: '#'
+      link: 'https://mytreatmentdds.com/'
     },
     {
       title: 'PayPoint Merchant App',
