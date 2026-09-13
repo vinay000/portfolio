@@ -8,7 +8,7 @@ export function Footer() {
 
   return (
     <footer className="w-full bg-slate-50 dark:bg-slate-950 border-t border-slate-100 dark:border-slate-900 py-8 transition-colors duration-300">
-      <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div className="max-w-6xl xl:max-w-7xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
         
         {/* Left Side: Logo and Copyright */}
         <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 text-center sm:text-left">

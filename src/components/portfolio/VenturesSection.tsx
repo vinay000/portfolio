@@ -231,11 +231,11 @@ export const VenturesSection: React.FC = () => {
               >
                 
                 {/* Col 1: Icon & Title & Date (Left) */}
-                <div className="lg:col-span-3 flex items-center gap-3.5 w-full">
+                <div className="lg:col-span-4 xl:col-span-3 flex items-center gap-3.5 w-full">
                   <ProjectBadge project={project} />
                   <div className="min-w-0">
-                    <h3 className="text-lg font-bold text-[#0A2540] dark:text-white font-display truncate leading-tight flex items-center gap-1.5">
-                      {project.title}
+                    <h3 className="text-lg font-bold text-[#0A2540] dark:text-white font-display leading-tight flex items-center gap-1.5">
+                      <span>{project.title}</span>
                       {isClickable && (
                         <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#2B6A65] dark:group-hover:text-teal-400 transition-colors shrink-0" />
                       )}
@@ -247,7 +247,7 @@ export const VenturesSection: React.FC = () => {
                 </div>
 
               {/* Col 2: Tagline & Description (Center) */}
-              <div className="lg:col-span-6 space-y-1.5 w-full text-left">
+              <div className="lg:col-span-5 xl:col-span-6 space-y-1.5 w-full text-left">
                 <div className="flex items-center justify-between lg:justify-start gap-2">
                   <h4 className="text-xs font-semibold text-[#2B6A65] dark:text-teal-400 tracking-wide uppercase">
                     {project.tagline}
@@ -262,7 +262,7 @@ export const VenturesSection: React.FC = () => {
               </div>
 
               {/* Col 3: Badges & Details Link (Right) */}
-              <div className="lg:col-span-3 flex lg:flex-col items-start lg:items-end justify-between lg:justify-center gap-4 w-full h-full border-t lg:border-t-0 border-slate-100/60 dark:border-slate-800/40 pt-4 lg:pt-0">
+              <div className="lg:col-span-3 xl:col-span-3 flex lg:flex-col items-start lg:items-end justify-between lg:justify-center gap-4 w-full h-full border-t lg:border-t-0 border-slate-100/60 dark:border-slate-800/40 pt-4 lg:pt-0">
                 <div className="flex flex-wrap gap-1.5 lg:justify-end">
                   {project.tags.slice(0, 3).map((tag) => (
                     <span

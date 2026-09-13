@@ -12,7 +12,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenCommandMenu, onScr
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 px-4 py-4 md:px-12 transition-all duration-300">
-      <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-3 rounded-full bg-white/85 dark:bg-slate-900/80 border border-slate-200/50 dark:border-slate-800/60 backdrop-blur-md shadow-md">
+      <div className="max-w-6xl xl:max-w-7xl mx-auto flex items-center justify-between px-6 py-3 rounded-full bg-white/85 dark:bg-slate-900/80 border border-slate-200/50 dark:border-slate-800/60 backdrop-blur-md shadow-md">
         
         {/* Brand/Logo styled like 'showcasy.' */}
         <div 

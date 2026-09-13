@@ -13,7 +13,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onScrollToSection }) =
       id="hero"
       className="relative flex flex-col justify-center items-start pt-6 sm:pt-16 pb-12 text-left overflow-hidden border-b border-zinc-200/50 dark:border-zinc-800/40 w-full"
     >
-      <div className="max-w-4xl w-full space-y-6 relative z-10">
+      <div className="max-w-5xl w-full space-y-6 relative z-10">
 
         {/* Profile photo and Social links */}
         <div className="flex items-center justify-between w-full gap-4">
@@ -89,7 +89,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onScrollToSection }) =
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-3xl font-normal leading-relaxed text-balance"
+          className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-4xl font-normal leading-relaxed text-balance"
         >
           I'm <span className="font-semibold text-[#0A2540] dark:text-white">Vinay Kumar Yadav</span>, a <span className="font-semibold text-[#0A2540] dark:text-white">Senior React Native & React Engineer</span> and the creator of <span className="font-semibold text-[#0A2540] dark:text-white">Feedlyx</span>. I have <span className="font-semibold text-[#0A2540] dark:text-white">5+ years of experience</span> engineering <span className="font-semibold text-[#2B6A65] dark:text-teal-400">AI-powered mobile and cross-platform web applications</span> using React, React Native, TypeScript, and Node.js.
         </motion.p>

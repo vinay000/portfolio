@@ -159,10 +159,10 @@ export const TimelineSection: React.FC = () => {
             >
               
               {/* Col 1: Icon & Company Name & Date (Left) */}
-              <div className="lg:col-span-3 flex items-center gap-3.5 w-full">
+              <div className="lg:col-span-4 xl:col-span-3 flex items-center gap-3.5 w-full">
                 <CompanyBadge step={step} />
                 <div className="min-w-0">
-                  <h3 className="text-lg font-bold text-[#0A2540] dark:text-white font-display truncate leading-tight">
+                  <h3 className="text-lg font-bold text-[#0A2540] dark:text-white font-display leading-tight">
                     {step.companyUrl ? (
                       <a 
                         href={step.companyUrl} 
@@ -170,7 +170,7 @@ export const TimelineSection: React.FC = () => {
                         rel="noopener noreferrer" 
                         className="hover:text-[#2B6A65] dark:hover:text-teal-400 transition-colors inline-flex items-center gap-1.5 group/company-link"
                       >
-                        {step.company}
+                        <span>{step.company}</span>
                         <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover/company-link:text-[#2B6A65] dark:group-hover/company-link:text-teal-400 transition-colors shrink-0" />
                       </a>
                     ) : (
@@ -184,7 +184,7 @@ export const TimelineSection: React.FC = () => {
               </div>
 
               {/* Col 2: Role & Achievement Bullets (Center) */}
-              <div className="lg:col-span-6 w-full text-left">
+              <div className="lg:col-span-5 xl:col-span-6 w-full text-left">
                 <h4 className="text-sm font-bold text-[#2B6A65] dark:text-teal-400 uppercase tracking-wide">
                   {step.role}
                 </h4>
